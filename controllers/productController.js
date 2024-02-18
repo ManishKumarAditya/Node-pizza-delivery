@@ -10,11 +10,12 @@ import productSchema from "../validators/productValidator.js";
 
 //upload a file into folder and written a file name
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, 'uploads/'),
+    destination: (req, file, cb) => cb(null, 'uploads'),
     filename: (req, file, cb) => {
 
         //create a unique name
         const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1E9)}${path.extname(file.originalname)}`;
+        console.log("unique : ",uniqueName);
         cb(null, uniqueName);
     }
 });
@@ -30,6 +31,7 @@ const productController = {
                 return next(CustomErrorHandler.serverError(error1.message));
             }
 
+            console.log(req.file);
             const filePath = req.file.path;
 
             // validation

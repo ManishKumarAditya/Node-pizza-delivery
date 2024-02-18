@@ -3,6 +3,8 @@ import { APP_PORT, DB_URL } from "./config/index.js";
 import routes from './routes/index.js';
 import errorHandler from "./middlewares/errorHandler.js";
 import mongoose from "mongoose";
+import { dirname } from 'path';
+
 
 //path module
 import path from 'path';
@@ -20,10 +22,11 @@ db.once('open', () => {
     console.log('DB connected');
 });
 
-
 // global varibale && // use path module in ES6 in node && express
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
+
 global.appRoot = path.resolve(__dirname);
 
 app.use(express.urlencoded({extended: false}));
