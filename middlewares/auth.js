@@ -1,6 +1,7 @@
 import CustomErrorHandler from "../services/CustomErrorHamdler.js";
 import JwtService from "../services/JwtService.js";
 
+// this is authentication function
 const auth = async (req, res , next) => {
     let authHeader = req.headers.authorization;
 
